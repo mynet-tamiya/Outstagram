@@ -19,15 +19,11 @@ class ArticlesTableSeeder extends Seeder
             'name' => 'daiki',
             'password' => bcrypt('1234'),
             'userid' => 'tamiya',
-            'created_at' => $faker->dateTime(),
-            'updated_at' => $faker->dateTime(),
         ]);
         DB::table('articles')->insert([
             'name' => 'foo',
             'password' => bcrypt('1234'),
             'userid' => 'hoge',
-            'created_at' => $faker->dateTime(),
-            'updated_at' => $faker->dateTime(),
         ]);
     }
 }
