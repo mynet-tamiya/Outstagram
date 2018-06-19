@@ -1,5 +1,6 @@
 <?php
-
+//echo "index.php";
+//exit;
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
@@ -11,7 +12,7 @@ define('LARAVEL_START', microtime(true));
 
 /*
 |--------------------------------------------------------------------------
-| Register The Auto Loader
+| Register The Auto Loadervar/
 |--------------------------------------------------------------------------
 |
 | Composer provides a convenient, automatically generated class loader for
