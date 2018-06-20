@@ -34,16 +34,27 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        echo "test";
         $this->middleware('guest')->except('logout');
+//        exit("construct()");
     }
 
     public function username()
     {
+        echo "username()";
         return 'email';
     }
 
+    //
     public function login()
     {
+        echo "login()";
         return view('login');
     }
+
+//    public function show()
+//    {
+//        exit("show()");
+//        return view('post');
+//    }
 }
