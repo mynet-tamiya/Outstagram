@@ -34,7 +34,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        echo "test";
         $this->middleware('guest')->except('logout');
 //        exit("construct()");
     }
@@ -48,13 +47,11 @@ class LoginController extends Controller
     //
     public function login()
     {
-        echo "login()";
+//        echo "login()";
         return view('login');
     }
+    public function index()
+    {
 
-//    public function show()
-//    {
-//        exit("show()");
-//        return view('post');
-//    }
+    }
 }
