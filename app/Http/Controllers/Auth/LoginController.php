@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,23 +37,45 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-//        exit("construct()");
     }
 
-    public function username()
+    public function email()
     {
-        echo "username()";
         return 'email';
     }
 
     //
     public function login()
     {
-//        echo "login()";
-        return view('login');
+        return view('postimage');
     }
-    public function index()
-    {
 
+    protected function guard()
+    {
+        return Auth::guard('guard-name');
     }
+
+    public function update(Request $request)
+    {
+        // $request->user()は認証済みユーザーのインスタンスを返す
+    }
+
+    // ユーザー認証関数
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function authenticate(Request $request)
+    {
+        $email = $request->get('email');
+        $password = $request->get('password');
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            // 認証に成功した
+            return redirect()->intended('post');
+        } else {
+            return redirect()->intended('login');
+        }
+    }
+
+
 }

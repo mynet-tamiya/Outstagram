@@ -18,23 +18,25 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::post('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 // ログイン用
-//Route::post('/show', 'Auth\LoginController@show');
+Route::post('/authenticate', 'Auth\LoginController@authenticate')->name('authenticate');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/logout', 'HomeController@logout')->name('logout');
 
 // ユーザー登録用
 //Route::get('/register/new', 'Auth\RegisterController@create')->name('register');
 //Route::post('/register/confirm', 'Auth\RegisterController@register');
 
-//// パスリセット用
+// パスリセット用
 //Route::get('password/reset', 'Auth\ForgotPasswordController@show')->name('password.request');
 //Route::post('password/email', 'Auth\ForgotPasswordController@send')->name('password.email');
 //Route::get('password/reset/{token}', 'Auth\ResetPasswordController@show')->name('password.reset');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::post('/post/new', 'PostImageController@post')->name('post');
-Route::post('/post/complete', 'PostImageController@complete')->name('complete');
 
+//Route::post('/post', function() {
+//    return view('post');
+//});
