@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::post('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 // ログイン用
 //Route::post('/show', 'Auth\LoginController@show');
@@ -35,6 +35,7 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 //Route::get('password/reset/{token}', 'Auth\ResetPasswordController@show')->name('password.reset');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::post('/post/new', 'PostImageController@post')->name('post');
-Route::post('/post/complete', 'PostImageController@complete')->name('complete');
-
+Route::post('/post', 'PostImageController@post')->name('post');
+//Route::post('/post', function() {
+//    return view('post');
+//});

@@ -8,16 +8,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class PostImageController extends Controller
 {
-    // 写真アップロード
+    // ログイン時に遷移する
     public function post()
     {
         return view('postimage');
     }
-
-    // 写真投稿完了
-    public function complete()
-    {
-        return view('complete');
-    }
-
 }
