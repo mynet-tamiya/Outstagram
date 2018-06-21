@@ -47,7 +47,7 @@ class LoginController extends Controller
     //
     public function login()
     {
-        return view('login');
+        return view('postimage');
     }
 
     protected function guard()
@@ -69,13 +69,13 @@ class LoginController extends Controller
     {
         $email = $request->get('email');
         $password = $request->get('password');
-        echo $email;
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // 認証に成功した
-            return redirect()->intended('postimage');
+            return redirect()->intended('post');
         } else {
             return redirect()->intended('login');
-            echo "認証失敗";
         }
     }
+
+
 }

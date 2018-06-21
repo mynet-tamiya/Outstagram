@@ -21,10 +21,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // ログイン用
-//Route::post('/show', 'Auth\LoginController@show');
 Route::post('/authenticate', 'Auth\LoginController@authenticate')->name('authenticate');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/logout', 'HomeController@logout')->name('logout');
 
 // ユーザー登録用
 //Route::get('/register/new', 'Auth\RegisterController@create')->name('register');
@@ -36,7 +35,8 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 //Route::get('password/reset/{token}', 'Auth\ResetPasswordController@show')->name('password.reset');
 //Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::post('/post', 'PostImageController@post')->name('post');
+Route::post('/post/new', 'PostImageController@post')->name('post');
+
 //Route::post('/post', function() {
 //    return view('post');
 //});
