@@ -45,20 +45,16 @@ class LoginController extends Controller
     }
 
     //
-    public function login()
-    {
-        return view('postimage');
-    }
+//    public function login()
+//    {
+//        echo "login()";
+//        return view('auth.login');
+//    }
 
-    protected function guard()
-    {
-        return Auth::guard('guard-name');
-    }
-
-    public function update(Request $request)
-    {
-        // $request->user()は認証済みユーザーのインスタンスを返す
-    }
+//    protected function guard()
+//    {
+//        return Auth::guard('guard-name');
+//    }
 
     // ユーザー認証関数
 
@@ -71,8 +67,9 @@ class LoginController extends Controller
         $password = $request->get('password');
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // 認証に成功した
-            return redirect()->intended('post');
+            return redirect()->intended('post/new');
         } else {
+            echo "default:login";
             return redirect()->intended('login');
         }
     }

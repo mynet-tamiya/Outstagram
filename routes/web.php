@@ -12,31 +12,22 @@
 */
 
 Route::get('/', function () {
-//    echo "welcome";
     return view('welcome');
 });
 
 Auth::routes();
+//Route::auth();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/post/new', 'HomeController@index')->name('home');
 
 // ログイン用
 Route::post('/authenticate', 'Auth\LoginController@authenticate')->name('authenticate');
-Route::post('/login', 'Auth\LoginController@login')->name('login');
-Route::post('/logout', 'HomeController@logout')->name('logout');
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 // ユーザー登録用
-//Route::get('/register/new', 'Auth\RegisterController@create')->name('register');
-//Route::post('/register/confirm', 'Auth\RegisterController@register');
+//Route::get('/register/new', 'Auth\RegisterController@register')->name('register');
+Route::post('/register/confirm', 'Auth\RegisterController@create')->name('create');
 
-// パスリセット用
-//Route::get('password/reset', 'Auth\ForgotPasswordController@show')->name('password.request');
-//Route::post('password/email', 'Auth\ForgotPasswordController@send')->name('password.email');
-//Route::get('password/reset/{token}', 'Auth\ResetPasswordController@show')->name('password.reset');
-//Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::post('/post/new', 'PostImageController@post')->name('post');
-
-//Route::post('/post', function() {
-//    return view('post');
-//});
+Route::get('/post/new', 'PostImageController@post')->name('post');
