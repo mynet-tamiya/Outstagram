@@ -5,24 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Item;
 use Illuminate\Http\Request;
 
 class PostImageController extends Controller
 {
-    public function post()
-    {
-        $user = User::find(auth()->id());
-        return view('postimage', compact('user'));
-    }
-
-    public function complete()
-    {
-//        echo "complete()";
-//        return redirect()->intended('/post/complete');
-        $user = User::find(auth()->id());
-
-        return view('postimage', compact('user'));
-    }
+//    public function post()
+//    {
+//        $user = User::find(auth()->id());
+//        return view('postimage', compact('user'));
+//    }
 
     public function index()
     {
@@ -51,9 +43,12 @@ class PostImageController extends Controller
             $filename = $request->file->store('public/avatar');
 
             $user = User::find(auth()->id());
-            $user->filename = basename($filename);
-            $user->save();
-
+//            $user->filename = basename($filename);
+//            $user->save();
+            $item = new Item();
+            $item->users_id = $user->id;
+            $item->filename = $filename;
+            $item->save();
             return redirect('/post/complete')->with('success', '保存しました。');
         } else {
             return redirect()
@@ -62,4 +57,10 @@ class PostImageController extends Controller
                 ->withErrors(['file' => '画像がアップロードされていないか不正なデータです。']);
         }
     }
+
+    public function complete()
+    {
+        return view("complete");
+    }
+
 }
