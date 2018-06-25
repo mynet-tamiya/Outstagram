@@ -1,12 +1,6 @@
 <?php
 namespace App;
 /**
- * Created by PhpStorm.
- * 
- * User: tamiya
- * Date: 2018/06/25
- * Time: 16:12
- *
  * @property int $id
  * @property string $users_id
  * @property string|null $remember_token

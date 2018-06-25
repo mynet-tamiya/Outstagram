@@ -30,7 +30,8 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 //Route::get('/register/new', 'Auth\RegisterController@register')->name('register');
 Route::post('/register/confirm', 'Auth\RegisterController@create')->name('create');
 
-
+// 画像投稿画面用
 Route::get('/post/new', 'PostImageController@index')->name('post');
 Route::get('/post/complete', 'PostImageController@complete')->name('complete');
 Route::post('/post/upload', 'PostImageController@upload');
+

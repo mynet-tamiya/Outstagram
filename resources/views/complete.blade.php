@@ -1,2 +1,4 @@
 @extends('layouts.app')
-完了ページ
+@section('content')
+ここに画像一覧表示
+@endsection
