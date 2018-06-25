@@ -18,7 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 //Route::auth();
 
-Route::get('/post/new', 'HomeController@index')->name('home');
+Route::get('/post/new', 'HomeController@index')->name('home'); // /home
+Route::post('/upload', 'HomeController@upload');
 
 // ログイン用
 Route::post('/authenticate', 'Auth\LoginController@authenticate')->name('authenticate');
@@ -31,3 +32,4 @@ Route::post('/register/confirm', 'Auth\RegisterController@create')->name('create
 
 
 Route::get('/post/new', 'PostImageController@post')->name('post');
+Route::post('/post/complete', 'PostImageController@complete')->name('complete');
