@@ -45,9 +45,8 @@ class LoginController extends Controller
     }
 
     //
-//    public function login()
+//    public function logout()
 //    {
-//        echo "login()";
 //        return view('auth.login');
 //    }
 

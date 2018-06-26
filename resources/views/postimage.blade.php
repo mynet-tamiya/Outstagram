@@ -18,9 +18,9 @@
         @endif
 
         <div class="form-group">
-            @if ($user->filename)
+            @if ($item->filename)
                 <p>
-                    <img src="{{ asset('storage/avatar/' . $user->filename) }}" alt="avatar" />
+                    <img src="{{ asset('/storage/avatar/' . $item->filename) }}" />
                 </p>
             @endif
             {!! Form::label('file', '画像アップロード', ['class' => 'control-label']) !!}

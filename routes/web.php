@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-//Route::auth();
 
 Route::get('/post/new', 'HomeController@index')->name('home'); // /home
 //Route::post('/upload', 'HomeController@upload');
@@ -34,4 +33,7 @@ Route::post('/register/confirm', 'Auth\RegisterController@create')->name('create
 Route::get('/post/new', 'PostImageController@index')->name('post');
 Route::get('/post/complete', 'PostImageController@complete')->name('complete');
 Route::post('/post/upload', 'PostImageController@upload');
+
+//Route::post('/post/complete', 'CompleteController@index');
+
 
