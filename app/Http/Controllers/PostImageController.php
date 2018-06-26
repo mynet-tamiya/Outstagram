@@ -39,7 +39,7 @@ class PostImageController extends Controller
                 // アップロードされたファイルであること
                 'file',
                 // 最小縦横120px 最大縦横400px
-                'dimensions:min_width=120,min_height=120,max_width=400,max_height=400',
+                'dimensions:min_width=120,min_height=120,max_width=1500,max_height=1500',
             ]
         ]);
 
@@ -65,7 +65,10 @@ class PostImageController extends Controller
 
     public function complete()
     {
-        $item = Item::find(auth()->id());
+        $user = User::find(auth()->id());
+        $id = $user->id;
+//        $item = (new \App\Item)->where('users_id', '=', $id)->get();
+        $item = Item::where('users_id', '=', $id)->get();
         return view('complete', compact('item'));
     }
 
