@@ -18,11 +18,11 @@
         @endif
 
         <div class="form-group">
-            @if ($user->filename)
-                <p>
-                    <img src="{{ asset('storage/avatar/' . $user->filename) }}" alt="avatar" />
-                </p>
-            @endif
+            {{--@if ($item->filename)--}}
+                {{--<p>--}}
+                    {{--<img src="{{ asset('/storage/avatar/' . $item->filename) }}" />--}}
+                {{--</p>--}}
+            {{--@endif--}}
             {!! Form::label('file', '画像アップロード', ['class' => 'control-label']) !!}
             {!! Form::file('file') !!}
         </div>

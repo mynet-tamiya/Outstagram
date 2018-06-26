@@ -16,11 +16,15 @@ class PostImageController extends Controller
 //        return view('postimage', compact('user'));
 //    }
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $user = User::find(auth()->id());
-
-        return view('postimage', compact('user'));
+        $item = Item::find(auth()->id());
+        return view('postimage', compact('item'));
     }
 
     /**
@@ -45,12 +49,12 @@ class PostImageController extends Controller
             $user = User::find(auth()->id());
 //            $user->filename = basename($filename);
 //            $user->save();
-            $item = new Item();
+            $item = Item::find(auth()->id());//new Item();
             $item->users_id = $user->id;
-            $setFileName = pathinfo($filename, PATHINFO_BASENAME);
+            $setFileName = pathinfo(basename($filename), PATHINFO_BASENAME);
             $item->filename = $setFileName;
             $item->save();
-            return redirect('/post/complete')->with('success', '保存しました。');
+            return redirect('/post/new')->with('success', '保存しました。');
         } else {
             return redirect()
                 ->back()
@@ -61,7 +65,11 @@ class PostImageController extends Controller
 
     public function complete()
     {
-        return view("complete");
+        $user = User::find(auth()->id());
+        $id = $user->id;
+//        $item = (new \App\Item)->where('users_id', '=', $id)->get();
+        $item = Item::where('users_id', '=', $id)->get();
+        return view('complete', compact('item'));
     }
 
 }
