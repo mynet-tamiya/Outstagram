@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Item;
 use Illuminate\Http\Request;
-
+//
 class PostImageController extends Controller
 {
 //    public function post()
@@ -43,13 +43,35 @@ class PostImageController extends Controller
             ]
         ]);
 
+        $filepath = "/var/www/html/samba/outstagram/public/storage/avatar/1kl6l231Ps0ExUkcLrSYrVJ9sMfhf1UxhtIVmnEn.png";
+
+//        echo "<pre>";
+//        var_dump($imagick->identifyImage($filepath));
+//        if ($imagick->identifyImage($filepath)) {
+//            echo "画像";
+//        }
+
         if ($request->file('file')->isValid([])) {
             $filename = $request->file->store('public/avatar');
-
             $user = User::find(auth()->id());
 //            $user->filename = basename($filename);
 //            $user->save();
             $item = Item::find(auth()->id());//new Item();
+
+            $filepath = asset("/storage/avatar/$item->filename");
+
+            try {
+                $imagick = new \Imagick($filepath);
+            } catch (\ImagickException $e) {
+            }
+
+            if ($imagick->identifyImage($filepath)) {
+                echo "画像である。";
+            } else {
+                echo "画像ではない。";
+                return;
+            }
+
             $item->users_id = $user->id;
             $setFileName = pathinfo(basename($filename), PATHINFO_BASENAME);
             $item->filename = $setFileName;
@@ -62,13 +84,10 @@ class PostImageController extends Controller
                 ->withErrors(['file' => '画像がアップロードされていないか不正なデータです。']);
         }
     }
-
     public function complete()
     {
         $user = User::find(auth()->id());
-        $id = $user->id;
-//        $item = (new \App\Item)->where('users_id', '=', $id)->get();
-        $item = Item::where('users_id', '=', $id)->get();
+        $item = Item::where('users_id', '=', $user->id)->get();
         return view('complete', compact('item'));
     }
 

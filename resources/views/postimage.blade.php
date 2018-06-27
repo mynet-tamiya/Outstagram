@@ -1,6 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
+
     {!! Form::open(['url' => '/post/upload', 'method' => 'post', 'files' => true]) !!}
         {{--成功時のメッセージ--}}
         @if (session('success'))
